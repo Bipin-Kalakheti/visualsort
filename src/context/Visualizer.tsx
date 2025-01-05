@@ -14,7 +14,7 @@ interface SortingAlgorithmContextType {
   setSelectedAlgorithm: (algorithm: SortingAlgorithmType) => void;
   isSorting: boolean;
   setIsSorting: (isSorting: boolean) => void;
-  animationspeed: number;
+  animationSpeed: number;
   setAnimationSpeed: (speed: number) => void;
   isAnimationComplete: boolean;
   setIsAnimationComplete: (isComplete: boolean) => void;
@@ -35,7 +35,7 @@ export const SortingAlgorithmProvider = ({
   const [selectedAlgorithm, setSelectedAlgorithm] =
     useState<SortingAlgorithmType>("bubble");
   const [isSorting, setIsSorting] = useState<boolean>(false);
-  const [animationspeed, setAnimationSpeed] =
+  const [animationSpeed, setAnimationSpeed] =
     useState<number>(MAX_ANIMATION_SPEED);
   const [isAnimationComplete, setIsAnimationComplete] =
     useState<boolean>(false);
@@ -74,7 +74,7 @@ export const SortingAlgorithmProvider = ({
     setSelectedAlgorithm,
     isSorting,
     setIsSorting,
-    animationspeed,
+    animationSpeed,
     setAnimationSpeed,
     isAnimationComplete,
     setIsAnimationComplete,

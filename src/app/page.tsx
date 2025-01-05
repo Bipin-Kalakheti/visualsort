@@ -1,9 +1,10 @@
 "use client";
 
+import { Slider } from "@/components/Input/Slider";
 import { useSortingAlgorithmContext } from "@/context/Visualizer";
 
 export default function Home() {
-  const { arrayToSort, isSorting } = useSortingAlgorithmContext();
+  const { arrayToSort, isSorting, animationSpeed, setAnimationSpeed } = useSortingAlgorithmContext();
 
   return (
     <main className="absolute top-0 h-screen w-screen z-[-2] bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#28b463_1px)] bg-[size:40px_40px]">
@@ -16,7 +17,13 @@ export default function Home() {
             <h1 className="text-gray-300 text-2xl font-light hidden md:flex">
               Visual Sort
             </h1>
-            <div className="">Controls</div>
+            <div className="flex items-center gap-4">
+              <Slider 
+                isDisabled={isSorting}
+                value={animationSpeed}
+                handleChange={(e) => setAnimationSpeed(Number(e.target.value))}
+              />
+            </div>
           </div>
           <div className="relative h-[calc(100vh-66px)] w-full">
             <div className="absolute w-full mx-auto left-0 right-0 flex justify-center items-end bottom-[32px]">
