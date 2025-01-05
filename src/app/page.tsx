@@ -28,7 +28,7 @@ export default function Home() {
                     height: `${value}px`,
                   }}
                 >
-                  {" "}
+                  
                 </div>
               ))}
             </div>
