@@ -67,6 +67,8 @@ export const SortingAlgorithmProvider = ({
     setArrayToSort(tempArray);
     setIsAnimationComplete(false);
     setIsSorting(false);
+
+    const highestId = window.setTimeout(() => {}, 0);
   };
   const runAnimation = (animations: AnimationArrayType) => {
     setIsSorting(true);

@@ -1,3 +1,7 @@
+import { run } from "node:test";
+import { SortingAlgorithmType, AnimationArrayType } from "./types";
+import { generateBubbleSortAnimationArray } from "@/algorithms/bubbleSort";
+
 export const MIN_ANIMATION_SPEED = 100;
 export const MAX_ANIMATION_SPEED = 400;
 
@@ -12,3 +16,25 @@ export const algorithmOptions = [
   { label: "Quick Sort", value: "quick" },
   { label: "Merge Sort", value: "merge" },
 ];
+
+
+export function generateAnimationArray(
+  selectedAlgorithm: SortingAlgorithmType,
+  isSorting: boolean,
+  array: number[],
+  runAnimation: (animations: AnimationArrayType) => void,
+
+) {
+  switch (selectedAlgorithm) {
+    case "bubble":
+      return generateBubbleSortAnimationArray(isSorting, array, runAnimation);
+    case "selection":
+      return selectionSort(array, runAnimation);
+    case "insertion":
+      return insertionSort(array, runAnimation);
+    case "quick":
+      return quickSort(array, runAnimation);
+    case "merge":
+      return mergeSort(array, runAnimation);
+  }
+}
