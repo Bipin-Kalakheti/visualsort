@@ -44,7 +44,7 @@ export default function Home() {
   };
 
   return (
-    <main className="absolute top-0 h-screen w-screen z-[-2] bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#28b463_1px)] bg-[size:40px_40px]">
+    <main className="absolute top-0 h-screen w-screen z-[-2] bg-[#000000] bg-[radial-gradient(#ffffff79_1px,#1d3557_1px)] bg-[size:40px_40px]">
       <div className="flex h-full justify-center">
         <div
           id="content-container"
@@ -54,12 +54,13 @@ export default function Home() {
             <h1 className="text-gray-300 text-2xl font-light hidden md:flex">
               Visual Sort
             </h1>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-center gap-4">
               <Slider
                 isDisabled={isSorting}
                 value={animationSpeed}
                 handleChange={(e) => setAnimationSpeed(Number(e.target.value))}
               />
+
               <Select
                 options={algorithmOptions}
                 defaultValue={selectedAlgorithm}
@@ -77,7 +78,7 @@ export default function Home() {
                 )}
               </button>
             </div>
-            <div className="hidden sm:flex asbsolute top-[120%] left-0 w-full">
+            <div className="hidden sm:flex absolute top-[120%] left-0 w-full">
               <div className="flex w-full text-gray-400 p-4 rounded border border-system-purple20 bg-system-purple80 bg-opacity-10 gap-6">
                 <div className="flex flex-col items-start justify-start w-3/4">
                   <h3 className="text-lg">
@@ -88,29 +89,27 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="flex flex-col items-start justify-start w-1/4 gap-2">
-                  <h3 className="text-lg">
-                    Time Complexity
-                  </h3>
-                <div className="flex flex-col gap-2">
-                  <p className="flex w-full text-sm text-gray-500">
-                    <span className="w-28">Worst Case:</span>
-                    <span>
-                      {sortingAlgorithmsData[selectedAlgorithm].worstCase}
-                    </span>
-                  </p>
-                  <p className="flex w-full text-sm text-gray-500">
-                    <span className="w-28">Average Case:</span>
-                    <span>
-                      {sortingAlgorithmsData[selectedAlgorithm].averageCase}
-                    </span>
-                  </p>
-                  <p className="flex w-full text-sm text-gray-500">
-                    <span className="w-28">Best Case:</span>
-                    <span>
-                      {sortingAlgorithmsData[selectedAlgorithm].bestCase}
-                    </span>
-                  </p>
-                </div>
+                  <h3 className="text-lg">Time Complexity</h3>
+                  <div className="flex flex-col gap-2">
+                    <p className="flex w-full text-sm text-gray-500">
+                      <span className="w-28">Worst Case:</span>
+                      <span>
+                        {sortingAlgorithmsData[selectedAlgorithm].worstCase}
+                      </span>
+                    </p>
+                    <p className="flex w-full text-sm text-gray-500">
+                      <span className="w-28">Average Case:</span>
+                      <span>
+                        {sortingAlgorithmsData[selectedAlgorithm].averageCase}
+                      </span>
+                    </p>
+                    <p className="flex w-full text-sm text-gray-500">
+                      <span className="w-28">Best Case:</span>
+                      <span>
+                        {sortingAlgorithmsData[selectedAlgorithm].bestCase}
+                      </span>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

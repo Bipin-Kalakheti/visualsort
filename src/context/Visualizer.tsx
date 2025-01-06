@@ -61,7 +61,7 @@ export const SortingAlgorithmProvider = ({
     const containerHeight = window.innerHeight;
     const maxLineHeight = Math.max(containerHeight - 420, 100);
     for (let i = 0; i < numLines; i++) {
-      generateRandomNumberFromInterval(35, maxLineHeight);
+      tempArray.push(generateRandomNumberFromInterval(35, maxLineHeight));
     }
 
     setArrayToSort(tempArray);
@@ -70,7 +70,7 @@ export const SortingAlgorithmProvider = ({
 
     const highestId = window.setTimeout(() => {
       for (let i = highestId; i >= 0; i--) {
-        window.clearTimeout(i);
+        window.clearInterval(i);
       }
     }, 0);
     setTimeout(() => {
@@ -79,7 +79,7 @@ export const SortingAlgorithmProvider = ({
       ) as HTMLCollectionOf<HTMLElement>;
       for (let i = 0; i < arrayLines.length; i++) {
         arrayLines[i].classList.remove("change-line-color");
-        arrayLines[i].classList.remove("default-line-color");
+        arrayLines[i].classList.add("default-line-color");
       }
     }, 0);
   };
@@ -111,15 +111,23 @@ export const SortingAlgorithmProvider = ({
     };
     animations.forEach((animation, index) => {
       setTimeout(() => {
-        const [values, isSwap] = animation;
+        const [lineIndexes, isSwap] = animation;
 
         if (!isSwap) {
-          updateClassList(values, "change-line-color", "default-line-color");
+          updateClassList(
+            lineIndexes,
+            "change-line-color",
+            "default-line-color"
+          );
           setTimeout(() => {
-            updateClassList(values, "default-line-color", "change-line-color");
+            updateClassList(
+              lineIndexes,
+              "default-line-color",
+              "change-line-color"
+            );
           }, inverseSpeed);
         } else {
-          const [lineIndex, newHeight] = values;
+          const [lineIndex, newHeight] = lineIndexes;
           updateHeightValue(lineIndex, newHeight);
         }
       }, index * inverseSpeed);
@@ -129,7 +137,7 @@ export const SortingAlgorithmProvider = ({
 
     setTimeout(() => {
       Array.from(arrayLines).forEach((line) => {
-        line.classList.add(" pulse", " change-line-color");
+        line.classList.add("pulse", "change-line-color");
         line.classList.remove("default-line-color");
       });
 
@@ -166,9 +174,9 @@ export const SortingAlgorithmProvider = ({
   );
 };
 
-export const useSortingAlgorithmContext = () => {
+export const useSortingAlgorithmContext = (): SortingAlgorithmContextType => {
   const context = useContext(SortingAlgorithmContext);
-  if (!context) {
+  if (context === undefined) {
     throw new Error(
       "useSortingAlgorithmContext must be used within a SortingAlgorithmProvider"
     );

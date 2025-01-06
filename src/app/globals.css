@@ -22,11 +22,11 @@ body {
 }
 
 .default-line-color {
-  background-color: theme("colors.system.purple50");
+  background-color: #edf2f4;
 }
 
 .change-line-color {
-  background-color: theme("colors.system.green50");
+  background-color: #e63946;
 }
 
 @-webkit-keyframes pulse {
