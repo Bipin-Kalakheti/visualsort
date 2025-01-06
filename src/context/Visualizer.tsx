@@ -4,6 +4,7 @@ import { AnimationArrayType, SortingAlgorithmType } from "@/lib/types";
 import {
   generateRandomNumberFromInterval,
   MAX_ANIMATION_SPEED,
+  DEFAULT_NUM_LINES,
 } from "@/lib/utils";
 import { createContext, useContext, useEffect, useState } from "react";
 
@@ -16,6 +17,8 @@ interface SortingAlgorithmContextType {
   setIsSorting: (isSorting: boolean) => void;
   animationSpeed: number;
   setAnimationSpeed: (speed: number) => void;
+  numLines: number;
+  setNumLines: (numLines: number) => void;
   isAnimationComplete: boolean;
   setIsAnimationComplete: (isComplete: boolean) => void;
   resetArrayAndAnimation: () => void;
@@ -38,6 +41,7 @@ export const SortingAlgorithmProvider = ({
   const [isSorting, setIsSorting] = useState<boolean>(false);
   const [animationSpeed, setAnimationSpeed] =
     useState<number>(MAX_ANIMATION_SPEED);
+  const [numLines, setNumLines] = useState<number>(DEFAULT_NUM_LINES);
   const [isAnimationComplete, setIsAnimationComplete] =
     useState<boolean>(false);
 
@@ -50,17 +54,17 @@ export const SortingAlgorithmProvider = ({
     return () => {
       window.removeEventListener("resize", resetArrayAndAnimation);
     };
-  }, []);
+  }, [numLines]);
 
   const resetArrayAndAnimation = () => {
     const contentContainer = document.getElementById("content-container");
     if (!contentContainer) return;
     const contentContainerWidth = contentContainer.clientWidth;
     const tempArray: number[] = [];
-    const numLines = contentContainerWidth / 8;
+    const generateNumLines = Math.min(numLines, contentContainerWidth / 12);
     const containerHeight = window.innerHeight;
     const maxLineHeight = Math.max(containerHeight - 420, 100);
-    for (let i = 0; i < numLines; i++) {
+    for (let i = 0; i < generateNumLines; i++) {
       tempArray.push(generateRandomNumberFromInterval(35, maxLineHeight));
     }
 
@@ -86,7 +90,7 @@ export const SortingAlgorithmProvider = ({
   const runAnimation = (animations: AnimationArrayType) => {
     setIsSorting(true);
 
-    const inverseSpeed = (1 / animationSpeed) * 200;
+    const inverseSpeed = (1 / animationSpeed) * 400;
     const arrayLines = document.getElementsByClassName(
       "array-line"
     ) as HTMLCollectionOf<HTMLElement>;
@@ -161,6 +165,8 @@ export const SortingAlgorithmProvider = ({
     setIsSorting,
     animationSpeed,
     setAnimationSpeed,
+    numLines,
+    setNumLines,
     isAnimationComplete,
     setIsAnimationComplete,
     resetArrayAndAnimation,

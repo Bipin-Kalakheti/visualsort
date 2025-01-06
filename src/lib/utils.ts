@@ -1,9 +1,13 @@
 import { SortingAlgorithmType, AnimationArrayType } from "./types";
 import { generateBubbleSortAnimationArray } from "@/algorithms/bubbleSort";
+import { generateInsertionSortAnimationArray } from "@/algorithms/insertionSort";
+import { generateMergeSortAnimationArray } from "@/algorithms/mergeSort";
+import { generateQuickSortAnimationArray } from "@/algorithms/quickSort";
 import { generateSelectionSortAnimationArray } from "@/algorithms/selectionSort";
 
-export const MIN_ANIMATION_SPEED = 100;
-export const MAX_ANIMATION_SPEED = 400;
+export const MIN_ANIMATION_SPEED = 30;
+export const MAX_ANIMATION_SPEED = 200;
+export const DEFAULT_NUM_LINES = 50;
 
 export function generateRandomNumberFromInterval(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -32,6 +36,18 @@ export function generateAnimationArray(
         array,
         runAnimation
       );
+    case "insertion":
+      return generateInsertionSortAnimationArray(
+        isSorting,
+        array,
+        runAnimation
+      );
+    case "quick":
+      return generateQuickSortAnimationArray(isSorting, array, runAnimation);
+    case "merge":
+      return generateMergeSortAnimationArray(isSorting, array, runAnimation);
+    default:
+      return;
   }
 }
 

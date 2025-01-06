@@ -7,6 +7,7 @@ export const Slider = ({
   value,
   handleChange,
   isDisabled = false,
+  label,
 }: {
   min?: number;
   max?: number;
@@ -14,10 +15,11 @@ export const Slider = ({
   value: number;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   isDisabled?: boolean;
+  label: string;
 }) => {
   return (
     <div className="flex gap-2 items-center justify-center">
-      <span className="text-center text-gray-300">Slow</span>
+      <span className="text-center text-gray-300">{label}</span>
       <input
         type="range"
         min={min}
@@ -28,7 +30,6 @@ export const Slider = ({
         disabled={isDisabled}
         className="w-full h-2 rounded-lg appearance-none cursor-pointer bg-gray-700"
       />
-      <span className="text-center text-gray-300">Fast</span>
     </div>
   );
 };
