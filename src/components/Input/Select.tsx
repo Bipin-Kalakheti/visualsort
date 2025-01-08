@@ -6,29 +6,39 @@ export const Select = ({
   defaultValue,
   onChange,
   isDisabled = false,
+  className = '',
 }: {
   options: SelectOptionsType[];
   defaultValue: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   isDisabled?: boolean;
+  className?: string;
 }) => {
   return (
-    <div className="inline-block relative w-48">
+    <div className={`relative ${className}`}>
       <select
         disabled={isDisabled}
         onChange={onChange}
         defaultValue={defaultValue}
-        className="block appearance-none h-8 w-full bg-system-purple10 border-system-purple20 border px-4 py-1 pr-8 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline text-gray-300"
+        className="block appearance-none w-full bg-system-purple20 border-system-purple30 border 
+        px-4 py-2 pr-8 rounded-lg text-gray-300 cursor-pointer
+        disabled:opacity-50 disabled:cursor-not-allowed
+        hover:border-system-purple40 transition-colors
+        focus:outline-none focus:border-system-purple50 focus:ring-1 focus:ring-system-purple50"
       >
         {options.map((option) => (
-          <option key={option.value} value={option.value}>
+          <option
+            key={option.value}
+            value={option.value}
+            className="bg-system-purple10"
+          >
             {option.label}
           </option>
         ))}
       </select>
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
+      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
         <svg
-          className="fill-gray-300 h-4 w-4"
+          className="fill-current h-4 w-4"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
         >

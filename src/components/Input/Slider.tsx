@@ -8,6 +8,7 @@ export const Slider = ({
   handleChange,
   isDisabled = false,
   label,
+  className = '',
 }: {
   min?: number;
   max?: number;
@@ -16,10 +17,11 @@ export const Slider = ({
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   isDisabled?: boolean;
   label: string;
+  className?: string;
 }) => {
   return (
-    <div className="flex gap-2 items-center justify-center">
-      <span className="text-center text-gray-300">{label}</span>
+    <div className={`flex flex-col gap-2 ${className}`}>
+      <label className="text-sm font-medium text-gray-300">{label}</label>
       <input
         type="range"
         min={min}
@@ -28,7 +30,16 @@ export const Slider = ({
         value={value}
         onChange={handleChange}
         disabled={isDisabled}
-        className="w-full h-2 rounded-lg appearance-none cursor-pointer bg-gray-700"
+        className="w-full h-2 rounded-lg appearance-none cursor-pointer bg-system-purple20 
+        disabled:opacity-50 disabled:cursor-not-allowed
+        [&::-webkit-slider-thumb]:appearance-none
+        [&::-webkit-slider-thumb]:w-4
+        [&::-webkit-slider-thumb]:h-4
+        [&::-webkit-slider-thumb]:rounded-full
+        [&::-webkit-slider-thumb]:bg-system-purple60
+        [&::-webkit-slider-thumb]:hover:bg-system-purple50
+        [&::-webkit-slider-thumb]:cursor-pointer
+        [&::-webkit-slider-thumb]:transition-colors"
       />
     </div>
   );

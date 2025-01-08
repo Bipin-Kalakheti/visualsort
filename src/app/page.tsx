@@ -107,11 +107,11 @@ export default function Home() {
             id="content-container"
             className="flex max-w-[1020px] w-full flex-col lg:px-0 px-4"
           >
-            <div className="h-[120px] mt-4 relative flex items-center justify-between w-full">
-              <h1 className="text-gray-300 text-2xl font-light hidden md:flex">
-                Visual Sort
+            <div className="h-[150px] md:h-[120px] mt-4 relative flex items-center justify-between w-full bg-system-purple10/50 rounded-lg p-6 backdrop-blur-sm border border-system-purple20">
+              <h1 className="text-gray-300 text-3xl font-light hidden md:flex tracking-wider">
+                <span className="text-system-purple60">Visual</span>Sort
               </h1>
-              <div className="flex flex-wrap md:flex-row items-center justify-center gap-4">
+              <div className="flex flex-wrap md:flex-row items-center justify-center gap-6">
                 <Slider
                   label="Speed"
                   isDisabled={isSorting}
@@ -119,6 +119,7 @@ export default function Home() {
                   handleChange={(e) =>
                     setAnimationSpeed(Number(e.target.value))
                   }
+                  className="min-w-[150px]"
                 />
                 <Slider
                   label="Size"
@@ -128,15 +129,17 @@ export default function Home() {
                   value={numLines}
                   handleChange={(e) => setNumLines(Number(e.target.value))}
                   isDisabled={isSorting}
+                  className="min-w-[150px]"
                 />
                 <Select
                   options={algorithmOptions}
                   defaultValue={selectedAlgorithm}
                   onChange={handleSelectChange}
                   isDisabled={isSorting}
+                  className="min-w-[180px]"
                 />
                 <button
-                  className="flex items-center justify-center text-gray-400 hover:text-gray-300 transition-colors"
+                  className="flex items-center justify-center text-gray-400 hover:text-system-purple60 transition-all duration-200 ease-in-out transform hover:scale-110 p-2 rounded-full hover:bg-system-purple20/30"
                   onClick={toggleValues}
                   disabled={isSorting}
                 >
